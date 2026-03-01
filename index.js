@@ -9,8 +9,8 @@ http.createServer((req, res) => {
 
 function createBot() {
     const client = bedrock.createClient({
-        host: 'fundom.playerserver.pro', 
-        port: 41059,                    
+        host: 'calliope.mcserverhost.com', 
+        port: 13807,                    
         username: 'AFK_Bot_247',
         version: '1.21.11',               
         offline: true             
