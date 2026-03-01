@@ -1,4 +1,11 @@
 const bedrock = require('bedrock-protocol');
+const http = require('http');
+
+// Gagawa tayo ng mini-website para hindi patayin ng Render ang bot
+http.createServer((req, res) => {
+    res.write("Bot is running!");
+    res.end();
+}).listen(8080);
 
 function createBot() {
     const client = bedrock.createClient({
@@ -10,8 +17,7 @@ function createBot() {
     });
 
     client.on('spawn', () => {
-        console.log('Nasa loob na ang bot sa FunDom! Server is now ALIVE.');
-        
+        console.log('Nasa loob na ang bot! FunDom is ALIVE.');
         setInterval(() => {
             if (client.status === 'active') {
                 client.queue('player_auth_input', {
@@ -24,12 +30,12 @@ function createBot() {
     });
 
     client.on('error', (err) => {
-        console.log('Error: ' + err + '. Reconnecting in 15s...');
+        console.log('Error: ' + err + '. Reconnecting...');
         setTimeout(createBot, 15000);
     });
 
     client.on('close', () => {
-        console.log('Bot disconnected. Reconnecting in 15s...');
+        console.log('Disconnected. Reconnecting...');
         setTimeout(createBot, 15000);
     });
 }
